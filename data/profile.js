@@ -1,0 +1,62 @@
+export const profile = {
+  name: "Alan Binu",
+  initials: "AB",
+  role: "Junior Engineer - Artificial Intelligence",
+  headline: "Junior Engineer - AI.\nIntelligent systems, automation, and real-time applications.",
+  shortBio:
+    "Results-driven technology professional with experience building intelligent systems, automation solutions, and real-time applications, taking ideas from concept to implementation.",
+  longBio: [
+    "Results-driven technology professional with experience in building intelligent systems, automation solutions, and real-time applications.",
+    "Skilled at transforming complex problems into scalable, efficient, and user-focused solutions through technical expertise, structured problem-solving, and innovative thinking.",
+    "Passionate about AI, automation, and emerging technologies, with a continuous-learning mindset and a focus on high-quality, measurable outcomes.",
+    "Able to take ideas from concept to implementation while maintaining performance, reliability, and real-world impact.",
+  ],
+  interests: [
+    "Artificial Intelligence",
+    "Generative AI",
+    "RAG",
+    "Agentic AI",
+    "Computer Vision",
+    "Robotics",
+    "Vision-Language-Action",
+    "MLOps",
+    "Automation",
+  ],
+  focus: [
+    "Generative AI",
+    "RAG",
+    "Agentic AI",
+    "Computer Vision",
+    "Robotics",
+    "VLA",
+    "MLOps",
+  ],
+  location: "Nashik, India",
+  email: "alanbinu0305@gmail.com",
+  phone: "7350701707",
+  resume: "/resume/alan-resume.pdf",
+  github: "https://github.com/alanbinu03",
+  linkedin: "https://www.linkedin.com/in/alanbinu0305",
+  statusBadge: "Junior Engineer - AI",
+  image: "/images/profile.jpg",
+  imageAlt: "Portrait of Alan Binu",
+  statistics: [],
+  seo: {
+    title: "Alan Binu | Junior Engineer - AI",
+    description:
+      "Alan Binu, Junior Engineer - AI. Work in computer vision, robotics, generative AI, RAG, agentic systems, and MLOps.",
+    keywords: [
+      "Alan Binu",
+      "Junior Engineer - AI",
+      "Hind Rectifiers Limited",
+      "Computer Vision",
+      "Robotics",
+      "RAG",
+      "Agentic AI",
+      "MLOps",
+      "NVIDIA GR00T",
+    ],
+  },
+};
+
+export default profile;

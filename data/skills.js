@@ -1,0 +1,86 @@
+export const skillGroups = [
+  {
+    id: "ai-genai",
+    label: "AI & GenAI",
+    items: [
+      "LLMs",
+      "RAG",
+      "Agentic AI",
+      "LangGraph",
+      "LangChain",
+      "CrewAI",
+      "Prompt Engineering",
+      "Embeddings",
+      "Vector Search",
+    ],
+  },
+  {
+    id: "machine-learning",
+    label: "Machine Learning",
+    items: [
+      "PyTorch",
+      "Scikit-learn",
+      "XGBoost",
+      "CNNs",
+      "Transformers",
+      "Fine-Tuning",
+      "Feature Engineering",
+      "Model Evaluation",
+    ],
+  },
+  {
+    id: "computer-vision",
+    label: "Computer Vision",
+    items: [
+      "OpenCV",
+      "YOLO",
+      "Object Detection",
+      "Tracking",
+      "Segmentation",
+      "Face Recognition",
+      "Real-Time Inference",
+    ],
+  },
+  {
+    id: "mlops",
+    label: "MLOps",
+    items: [
+      "MLflow",
+      "Experiment Tracking",
+      "Model Registry",
+      "Docker",
+      "CI/CD",
+      "Model Monitoring",
+    ],
+  },
+  {
+    id: "robotics",
+    label: "Robotics & VLA",
+    items: [
+      "ROS2",
+      "NVIDIA GR00T N1.7",
+      "VLA Models",
+      "Robot Perception",
+      "Teleoperation",
+      "Nav2",
+      "SLAM",
+    ],
+  },
+  {
+    id: "development",
+    label: "Development",
+    items: [
+      "Python",
+      "JavaScript",
+      "FastAPI",
+      "React",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "WebSockets",
+      "Git",
+    ],
+  },
+];
+
+export default skillGroups;
