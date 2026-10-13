@@ -96,13 +96,17 @@ Replace every `TODO-GITHUB-USERNAME` / `TODO-LINKEDIN-SLUG` / `TODO: your.email@
 
 ## Contact form
 
-The form validates in the browser and sends through `lib/contact.js`.
+The form validates in the browser and sends through Gmail SMTP at `POST /api/contact`.
 
-Set `VITE_CONTACT_WEBHOOK_URL` in `.env`:
+Set these in `.env` (they stay on the server and are not shipped to the browser):
 
-- An email address opens a mail draft.
-- An https URL receives the message as JSON.
-- Leave it empty and the form says delivery is not configured.
+- `SMTP_HOST=smtp.gmail.com`
+- `SMTP_PORT=587`
+- `SMTP_USER` — the Gmail address that sends
+- `SMTP_PASS` — a Google app password, not the normal Gmail password
+- `SMTP_TO` — inbox that receives the message
+
+The API runs with `npm run dev` and `npm run preview`. A static upload of `dist/` alone cannot send mail.
 
 ## GitHub repositories
 

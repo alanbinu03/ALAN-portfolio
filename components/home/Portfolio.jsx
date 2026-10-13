@@ -9,7 +9,10 @@ import ShinyText from "@/components/react-bits/ShinyText";
 import SpotlightCard from "@/components/react-bits/SpotlightCard";
 import GlareHover from "@/components/react-bits/GlareHover";
 import Magnet from "@/components/react-bits/Magnet";
-import GradientText from "@/components/react-bits/GradientText";
+import TiltedCard from "@/components/react-bits/TiltedCard";
+import CircularText from "@/components/react-bits/CircularText";
+import FuzzyText from "@/components/react-bits/FuzzyText";
+import ElectricBorder from "@/components/react-bits/ElectricBorder";
 import DecryptedText from "@/components/react-bits/DecryptedText";
 import ScrollReveal from "@/components/react-bits/ScrollReveal";
 import RotatingText from "@/components/react-bits/RotatingText";
@@ -287,7 +290,7 @@ export default function Portfolio() {
                     mainClassName="inline-flex text-lg font-medium text-white"
                   />
                 </span>
-                taken from a prototype through to deployment.
+                I take it from a prototype to something that still works on a Monday.
               </p>
               <Magnet magnetStrength={8} padding={40} wrapperClassName="mt-6 w-fit">
                 <p className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-text">
@@ -314,14 +317,22 @@ export default function Portfolio() {
 
       <section className="py-10" aria-label="Focus">
         <Container>
-          <div className="[&_span]:!text-[clamp(1.55rem,6vw,2.75rem)] [&_span]:!leading-none">
-            <TrueFocus
-              sentence="Vision Robotics Agents MLOps"
-              borderColor="#7adbe0"
-              glowColor="rgba(122, 219, 224, 0.55)"
-              blurAmount={4}
-              animationDuration={0.45}
-              pauseBetweenAnimations={1.1}
+          <div className="flex flex-col items-center gap-8 xl:flex-row xl:items-center xl:justify-between">
+            <div className="min-w-0 flex-1 [&_span]:!text-[clamp(1.55rem,6vw,2.75rem)] [&_span]:!leading-none">
+              <TrueFocus
+                sentence="Vision Robotics Agents MLOps"
+                borderColor="#7adbe0"
+                glowColor="rgba(122, 219, 224, 0.55)"
+                blurAmount={4}
+                animationDuration={0.45}
+                pauseBetweenAnimations={1.1}
+              />
+            </div>
+            <CircularText
+              text="VISION · ROBOTICS · AGENTS · MLOPS · "
+              spinDuration={24}
+              onHover="slowDown"
+              className="!h-40 !w-40 shrink-0 !text-xs text-accent"
             />
           </div>
         </Container>
@@ -348,14 +359,20 @@ export default function Portfolio() {
                 </p>
               </div>
             </div>
-            <img
-              src="/images/about-scene.jpg"
-              alt="An engineer working at a messy desk, with a softboard of todos and a glass of chai."
-              width="1024"
-              height="576"
-              decoding="async"
-              className="mx-auto h-auto w-full max-w-[500px] rounded-[18px] object-contain"
-            />
+            <div className="mx-auto w-full max-w-[500px]">
+              <TiltedCard
+                imageSrc="/images/about-scene.jpg"
+                altText="An engineer working at a messy desk, with a softboard of todos and a glass of chai."
+                containerWidth="100%"
+                containerHeight="auto"
+                imageWidth="100%"
+                imageHeight="auto"
+                scaleOnHover={1.03}
+                rotateAmplitude={8}
+                showMobileWarning={false}
+                showTooltip={false}
+              />
+            </div>
           </div>
           <div className="mt-10 grid items-stretch gap-4 md:grid-cols-2">
             {[
@@ -393,13 +410,17 @@ export default function Portfolio() {
             <div>
               <Label>Work</Label>
               <h2 className="mt-3">
-                <GradientText
-                  colors={["#7adbe0", "#f3f5f8", "#8ec5ff"]}
-                  animationSpeed={6}
-                  className="text-3xl tracking-tight sm:text-4xl"
+                <span className="sr-only">Selected systems</span>
+                <FuzzyText
+                  fontSize="clamp(2rem, 4vw, 2.6rem)"
+                  fontWeight={600}
+                  color="#f3f5f8"
+                  baseIntensity={0.06}
+                  hoverIntensity={0.42}
+                  fuzzRange={10}
                 >
                   Selected systems
-                </GradientText>
+                </FuzzyText>
               </h2>
             </div>
             <ScrollReveal
@@ -513,7 +534,7 @@ export default function Portfolio() {
       <section id="record" className="py-16 sm:py-20">
         <Container>
           <FadeContent duration={700} blur>
-          <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(14rem,0.72fr)] lg:gap-14">
+          <div className="grid min-w-0 gap-12">
             <BorderGlow
               className="min-w-0 p-5 sm:p-6"
               backgroundColor="#05060a"
@@ -540,7 +561,16 @@ export default function Portfolio() {
               </ul>
               {role.note ? <p className="mt-6 text-sm leading-relaxed text-muted">{role.note}</p> : null}
             </BorderGlow>
-            <div className="min-w-0">
+            <ElectricBorder
+              color="#7adbe0"
+              borderRadius={16}
+              chaos={0.28}
+              thickness={1.2}
+              glow={0.45}
+              intensity={0.7}
+              className="min-w-0"
+            >
+              <div className="min-w-0 rounded-[16px] border border-white/10 bg-[#05060a] p-5 sm:p-6">
               <Label>Education</Label>
               <ul className="mt-3 divide-y divide-white/10">
                 {education.map((item, index) => (
@@ -561,7 +591,8 @@ export default function Portfolio() {
                   </li>
                 ))}
               </ul>
-            </div>
+              </div>
+            </ElectricBorder>
           </div>
           </FadeContent>
         </Container>
