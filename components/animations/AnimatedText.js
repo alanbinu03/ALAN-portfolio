@@ -1,5 +1,3 @@
-"use client";
-
 export default function AnimatedText({ text, className, as: Tag = "span" }) {
   const lines = String(text).split("\n");
 

@@ -1,5 +1,3 @@
-"use client";
-
 import { motion, useReducedMotion } from "motion/react";
 
 export default function Reveal({ children, className, delay = 0 }) {
