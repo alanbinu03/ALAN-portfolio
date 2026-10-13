@@ -1,5 +1,3 @@
-"use client";
-
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProjectCard from "@/components/projects/ProjectCard";

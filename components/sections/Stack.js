@@ -1,5 +1,3 @@
-"use client";
-
 import { useMemo, useState } from "react";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";

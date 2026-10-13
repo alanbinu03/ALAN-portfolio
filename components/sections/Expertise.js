@@ -1,5 +1,3 @@
-"use client";
-
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GlowCard from "@/components/ui/GlowCard";

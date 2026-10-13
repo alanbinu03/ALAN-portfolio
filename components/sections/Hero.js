@@ -1,5 +1,3 @@
-"use client";
-
 import { profile } from "@/data/profile";
 import { mailtoHref, isPlaceholder } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
