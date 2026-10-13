@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 
 const DEFAULT_CONFIG = {

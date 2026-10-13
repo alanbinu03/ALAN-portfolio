@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useMemo, useRef, useState, memo } from 'react';
 
 const ANIMATION_CONFIG = {

@@ -1,5 +1,3 @@
-'use client';
-
 import { useRef, useCallback, useState, useEffect } from 'react';
 
 function parseHSL(hslStr) {

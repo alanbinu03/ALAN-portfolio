@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useRef } from 'react';
 
 const ROOT = 'pointer-events-none absolute inset-0 overflow-hidden';
