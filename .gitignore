@@ -10,12 +10,6 @@ node_modules/
 !.yarn/versions
 .pnpm-store/
 
-# next.js
-.next/
-out/
-.turbo/
-next-env.d.ts
-
 # production / build
 build/
 dist/

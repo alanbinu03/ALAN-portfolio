@@ -6,13 +6,13 @@ The homepage is a technical case-study surface: agents, RAG, computer vision, ro
 
 ## Tech stack
 
-- Next.js (App Router)
+- Vite
 - React
+- React Router
 - JavaScript
 - Tailwind CSS
 - Motion
 - Lucide React
-- next/font, next/image
 - ESLint + Prettier
 
 The hero visualization is a lightweight Canvas 2D perception graph (no WebGL). It still works when WebGL is unavailable and respects `prefers-reduced-motion`.
@@ -21,17 +21,16 @@ The hero visualization is a lightweight Canvas 2D perception graph (no WebGL). I
 
 ```bash
 npm install
-cp .env.example .env.local
 ```
 
-Set `NEXT_PUBLIC_SITE_URL` in `.env.local` to your deployed URL before shipping.
+Copy `.env.example` to `.env`. Set `VITE_SITE_URL` to your deployed URL before shipping.
 
 ## Commands
 
 ```bash
 npm run dev      # http://localhost:3000
-npm run build    # production build
-npm run start    # serve the production build
+npm run build    # production build in dist/
+npm run preview  # serve the production build
 npm run lint     # ESLint
 npm run format   # Prettier
 ```
@@ -97,14 +96,13 @@ Replace every `TODO-GITHUB-USERNAME` / `TODO-LINKEDIN-SLUG` / `TODO: your.email@
 
 ## Contact form
 
-The UI validates and posts to `app/api/contact/route.js`.
+The form validates in the browser and sends through `lib/contact.js`.
 
-If `CONTACT_WEBHOOK_URL` is empty, the form **does not pretend** the message was delivered. It returns a clear “not configured” state.
+Set `VITE_CONTACT_WEBHOOK_URL` in `.env`:
 
-To enable delivery later:
-
-1. Point `CONTACT_WEBHOOK_URL` at a serverless email/webhook endpoint.
-2. Keep the secret on the server only (never `NEXT_PUBLIC_`).
+- An email address opens a mail draft.
+- An https URL receives the message as JSON.
+- Leave it empty and the form says delivery is not configured.
 
 ## GitHub repositories
 
@@ -118,14 +116,13 @@ Server fetch hook: `lib/github.js`. Add a GitHub token as a **server** env var w
 - `data/expertise.js`
 - `data/architecture.js`
 
-## Deploy on Vercel
+## Deploy
 
-1. Push this repo to GitHub.
-2. Import the project in Vercel (Next.js preset).
-3. Set environment variables:
-   - `NEXT_PUBLIC_SITE_URL` = `https://your-domain.vercel.app` (or custom domain)
-   - `CONTACT_WEBHOOK_URL` (optional)
-4. Deploy.
+```bash
+npm run build
+```
+
+Vite writes the site to `dist/`. Upload that folder to a static host. Set `VITE_SITE_URL` to the public URL before you build.
 
 ## Placeholders you should replace
 
