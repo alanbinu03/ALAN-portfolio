@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ArrowUpRight } from "lucide-react";
 import Link from "@/components/ui/Link";
 import Container from "@/components/ui/Container";
@@ -12,7 +13,6 @@ import Magnet from "@/components/react-bits/Magnet";
 import TiltedCard from "@/components/react-bits/TiltedCard";
 import CircularText from "@/components/react-bits/CircularText";
 import FuzzyText from "@/components/react-bits/FuzzyText";
-import ElectricBorder from "@/components/react-bits/ElectricBorder";
 import DecryptedText from "@/components/react-bits/DecryptedText";
 import ScrollReveal from "@/components/react-bits/ScrollReveal";
 import RotatingText from "@/components/react-bits/RotatingText";
@@ -25,6 +25,7 @@ import ScrollFloat from "@/components/react-bits/ScrollFloat";
 import LogoLoop from "@/components/react-bits/LogoLoop";
 import PixelCard from "@/components/react-bits/PixelCard";
 import BorderGlow from "@/components/react-bits/BorderGlow";
+import TextType from "@/components/react-bits/TextType";
 import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
@@ -32,10 +33,88 @@ import { experience } from "@/data/experience";
 import { education } from "@/data/education";
 import { isPlaceholder } from "@/lib/utils";
 
+function ProfileImageWarning({ onClose }) {
+  useEffect(() => {
+    const onKey = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return createPortal(
+    <div className="fixed inset-0 z-[90] flex items-center justify-center p-4">
+      <button type="button" className="absolute inset-0 bg-black/75" aria-label="Dismiss warning" onClick={onClose} />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="profile-warning-title"
+        className="relative z-10 w-full max-w-md"
+      >
+        <h2 id="profile-warning-title" className="sr-only">
+          Don't play with my master's PROFILE IMAGE. I don't like it.
+        </h2>
+        <div className="rounded-[20px] border border-white/10 bg-[#090b10] px-6 py-7 text-center sm:px-8">
+            <p className="text-4xl leading-none" aria-hidden="true">
+              😤
+            </p>
+            <p className="mt-5 text-lg leading-snug text-white" aria-hidden="true">
+              <DecryptedText
+                text="Don't play with my master's"
+                animateOn="view"
+                sequential
+                speed={26}
+                className="text-lg leading-snug text-white"
+                parentClassName="block text-lg leading-snug"
+                encryptedClassName="text-white/30"
+              />
+            </p>
+            <p className="mt-2 text-2xl font-semibold tracking-wide text-white" aria-hidden="true">
+              <ShinyText
+                text="PROFILE IMAGE"
+                color="#ffd0d4"
+                shineColor="#ffffff"
+                speed={1.6}
+                className="text-2xl font-semibold tracking-wide"
+              />
+              <span> 🖼️</span>
+            </p>
+            <p className="mt-4 text-base text-white/75" aria-hidden="true">
+              <TextType
+                text="I don't like it..."
+                as="span"
+                loop={false}
+                typingSpeed={46}
+                showCursor
+                className="text-base text-white/75"
+                cursorClassName="text-[#ff8b96]"
+              />
+              <span> 🚫</span>
+            </p>
+            <div className="mt-7 flex justify-center">
+              <button
+                type="button"
+                autoFocus
+                onClick={onClose}
+                className="rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.08]"
+              >
+                Okay, I'll stop 🫡
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 function NativePhoto() {
   const [size, setSize] = useState(null);
   const [dragging, setDragging] = useState(false);
+  const [profileWarning, setProfileWarning] = useState(false);
   const photoRef = useRef(null);
+  const nudgeCount = useRef(0);
+  const closeWarning = useCallback(() => setProfileWarning(false), []);
 
   useEffect(() => {
     const image = new Image();
@@ -57,6 +136,15 @@ function NativePhoto() {
     let cy = 0;
     let frame = 0;
     let pointer = null;
+    let quietTimer = 0;
+
+    const armQuietReset = () => {
+      window.clearTimeout(quietTimer);
+      quietTimer = window.setTimeout(() => {
+        nudgeCount.current = 0;
+        setProfileWarning(false);
+      }, 20000);
+    };
 
     const paint = () => {
       el.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
@@ -96,6 +184,13 @@ function NativePhoto() {
       cx = event.clientX - pointer.dx;
       cy = event.clientY - pointer.dy;
       paint();
+      if (pointer.counted) return;
+      const travel = Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY);
+      if (travel < 16) return;
+      pointer.counted = true;
+      nudgeCount.current += 1;
+      armQuietReset();
+      if (nudgeCount.current > 3) setProfileWarning(true);
     };
 
     const up = (event) => {
@@ -110,7 +205,14 @@ function NativePhoto() {
     const down = (event) => {
       if (event.button !== 0) return;
       cancelAnimationFrame(frame);
-      pointer = { id: event.pointerId, dx: event.clientX - cx, dy: event.clientY - cy };
+      pointer = {
+        id: event.pointerId,
+        dx: event.clientX - cx,
+        dy: event.clientY - cy,
+        startX: event.clientX,
+        startY: event.clientY,
+        counted: false,
+      };
       setDragging(true);
       window.addEventListener("pointermove", move);
       window.addEventListener("pointerup", up);
@@ -119,6 +221,7 @@ function NativePhoto() {
 
     el.addEventListener("pointerdown", down);
     return () => {
+      window.clearTimeout(quietTimer);
       cancelAnimationFrame(frame);
       el.removeEventListener("pointerdown", down);
       window.removeEventListener("pointermove", move);
@@ -163,6 +266,7 @@ function NativePhoto() {
           />
         </GlareHover>
       </div>
+      {profileWarning ? <ProfileImageWarning onClose={closeWarning} /> : null}
     </div>
   );
 }
@@ -404,11 +508,69 @@ export default function Portfolio() {
         </Container>
       </section>
 
+      <section id="education" className="py-16 sm:py-20">
+        <Container>
+          <div className="min-w-0 rounded-[16px] border border-white/10 bg-[#05060a] p-5 sm:p-6">
+            <Label>Education</Label>
+            <ul className="mt-3 divide-y divide-white/10">
+              {education.map((item, index) => (
+                <li key={item.id} className="py-4">
+                  <AnimatedContent distance={16} duration={0.5} delay={index * 0.06}>
+                    <p className="text-sm text-white">{item.credential || item.institution}</p>
+                    <p className="mt-1 text-sm text-dim">
+                      {item.credential ? `${item.institution} · ` : ""}
+                      {item.period}
+                      {item.result ? (
+                        <>
+                          {" · "}
+                          <ResultValue result={item.result} />
+                        </>
+                      ) : null}
+                    </p>
+                  </AnimatedContent>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </section>
+
+      <section id="experience" className="py-16 sm:py-20">
+        <Container>
+          <BorderGlow
+            className="min-w-0 p-5 sm:p-6"
+            backgroundColor="#05060a"
+            borderRadius={16}
+            glowColor="174 62 68"
+            colors={["#7adbe0", "#8ec5ff", "#f3f5f8"]}
+            edgeSensitivity={18}
+          >
+            <Label>Experience</Label>
+            <h2 className="mt-3 text-balance text-xl tracking-tight text-white sm:text-2xl">{role.role}</h2>
+            <p className="mt-2 text-sm text-muted">
+              {role.company} · {role.location} · {role.period}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted">{role.description}</p>
+            <ul className="mt-6 space-y-5 text-sm leading-relaxed text-muted">
+              {role.responsibilities.map((item, index) => (
+                <li key={item.title}>
+                  <AnimatedContent distance={18} duration={0.55} delay={index * 0.04}>
+                    <span className="text-white">{item.title}: </span>
+                    {item.text}
+                  </AnimatedContent>
+                </li>
+              ))}
+            </ul>
+            {role.note ? <p className="mt-6 text-sm leading-relaxed text-muted">{role.note}</p> : null}
+          </BorderGlow>
+        </Container>
+      </section>
+
       <section id="work" className="py-16 sm:py-20">
         <Container>
           <div className="flex items-end justify-between gap-6 border-b border-white/10 pb-6">
             <div>
-              <Label>Work</Label>
+              <Label>Projects</Label>
               <h2 className="mt-3">
                 <span className="sr-only">Selected systems</span>
                 <FuzzyText
@@ -484,7 +646,7 @@ export default function Portfolio() {
 
       <section id="practice" className="py-16 sm:py-20">
         <Container>
-          <Label>Practice</Label>
+          <Label>Skills</Label>
           <ScrollFloat
             containerClassName="!my-0 mt-3"
             textClassName="!block !w-full !text-3xl !leading-tight !font-medium !whitespace-normal tracking-tight text-white sm:!text-4xl"
@@ -528,73 +690,6 @@ export default function Portfolio() {
               </PixelCard>
             ))}
           </div>
-        </Container>
-      </section>
-
-      <section id="record" className="py-16 sm:py-20">
-        <Container>
-          <FadeContent duration={700} blur>
-          <div className="grid min-w-0 gap-12">
-            <BorderGlow
-              className="min-w-0 p-5 sm:p-6"
-              backgroundColor="#05060a"
-              borderRadius={16}
-              glowColor="174 62 68"
-              colors={["#7adbe0", "#8ec5ff", "#f3f5f8"]}
-              edgeSensitivity={18}
-            >
-              <Label>Experience</Label>
-              <h2 className="mt-3 text-balance text-xl tracking-tight text-white sm:text-2xl">{role.role}</h2>
-              <p className="mt-2 text-sm text-muted">
-                {role.company} · {role.location} · {role.period}
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted">{role.description}</p>
-              <ul className="mt-6 space-y-5 text-sm leading-relaxed text-muted">
-                {role.responsibilities.map((item, index) => (
-                  <li key={item.title}>
-                    <AnimatedContent distance={18} duration={0.55} delay={index * 0.04}>
-                      <span className="text-white">{item.title}: </span>
-                      {item.text}
-                    </AnimatedContent>
-                  </li>
-                ))}
-              </ul>
-              {role.note ? <p className="mt-6 text-sm leading-relaxed text-muted">{role.note}</p> : null}
-            </BorderGlow>
-            <ElectricBorder
-              color="#7adbe0"
-              borderRadius={16}
-              chaos={0.28}
-              thickness={1.2}
-              glow={0.45}
-              intensity={0.7}
-              className="min-w-0"
-            >
-              <div className="min-w-0 rounded-[16px] border border-white/10 bg-[#05060a] p-5 sm:p-6">
-              <Label>Education</Label>
-              <ul className="mt-3 divide-y divide-white/10">
-                {education.map((item, index) => (
-                  <li key={item.id} className="py-4">
-                    <AnimatedContent distance={16} duration={0.5} delay={index * 0.06}>
-                      <p className="text-sm text-white">{item.credential || item.institution}</p>
-                      <p className="mt-1 text-sm text-dim">
-                        {item.credential ? `${item.institution} · ` : ""}
-                        {item.period}
-                        {item.result ? (
-                          <>
-                            {" · "}
-                            <ResultValue result={item.result} />
-                          </>
-                        ) : null}
-                      </p>
-                    </AnimatedContent>
-                  </li>
-                ))}
-              </ul>
-              </div>
-            </ElectricBorder>
-          </div>
-          </FadeContent>
         </Container>
       </section>
 

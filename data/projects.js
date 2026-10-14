@@ -1,69 +1,5 @@
 export const projects = [
   {
-    slug: "humanoid-robotics-vla",
-    name: "Humanoid Robotics and Vision-Language-Action",
-    category: "Robotics / VLA",
-    shortDescription:
-      "Humanoid robotics and Vision-Language-Action systems, including multi-camera data collection, manipulation workflows, robot state/action recording, and NVIDIA GR00T-based development.",
-    whatIBuilt:
-      "Developed humanoid robotics and Vision-Language-Action systems, including multi-camera data collection, manipulation workflows, robot state/action recording, and NVIDIA GR00T-based development.",
-    overview:
-      "Humanoid robotics and Vision-Language-Action systems: multi-camera data collection, manipulation workflows, robot state/action recording, and NVIDIA GR00T-based development.",
-    requirements: [
-      "Multi-camera data collection",
-      "Manipulation workflows",
-      "Robot state/action recording",
-      "NVIDIA GR00T-based development",
-    ],
-    architecture: [
-      { id: "cameras", label: "Multi-camera data collection" },
-      { id: "manipulation", label: "Manipulation workflows" },
-      { id: "recording", label: "State / action recording" },
-      { id: "groot", label: "NVIDIA GR00T" },
-    ],
-    stack: ["NVIDIA GR00T", "Vision-Language-Action"],
-    status: "April 2025 — Present",
-    featured: true,
-    github: null,
-    demo: null,
-    caseStudy: true,
-    gallery: [],
-  },
-  {
-    slug: "robot-vision-teleoperation",
-    name: "Robot Vision and Teleoperation",
-    category: "Robotics / Computer Vision",
-    shortDescription:
-      "Robot vision and teleoperation platform integrating live camera streaming, AI perception, ROS2 control, browser-based teleoperation, FastAPI, and WebSockets.",
-    whatIBuilt:
-      "Engineered a robot vision and teleoperation platform integrating live camera streaming, AI perception, ROS2 control, browser-based teleoperation, FastAPI, and WebSockets.",
-    overview:
-      "A robot vision and teleoperation platform: live camera streaming, AI perception, ROS2 control, browser-based teleoperation, FastAPI, and WebSockets.",
-    requirements: [
-      "Live camera streaming",
-      "AI perception",
-      "ROS2 control",
-      "Browser-based teleoperation",
-      "FastAPI",
-      "WebSockets",
-    ],
-    architecture: [
-      { id: "stream", label: "Live camera streaming" },
-      { id: "perception", label: "AI perception" },
-      { id: "ros2", label: "ROS2 control" },
-      { id: "teleop", label: "Browser teleoperation" },
-      { id: "fastapi", label: "FastAPI" },
-      { id: "ws", label: "WebSockets" },
-    ],
-    stack: ["ROS2", "FastAPI", "WebSockets"],
-    status: "April 2025 — Present",
-    featured: true,
-    github: null,
-    demo: null,
-    caseStudy: true,
-    gallery: [],
-  },
-  {
     slug: "generative-ai-rag-agents",
     name: "Generative AI, RAG, and Agentic Systems",
     category: "Generative AI / Agentic AI",
@@ -175,6 +111,70 @@ export const projects = [
       "Drift Detection",
       "Retraining",
     ],
+    status: "April 2025 — Present",
+    featured: true,
+    github: null,
+    demo: null,
+    caseStudy: true,
+    gallery: [],
+  },
+  {
+    slug: "robot-vision-teleoperation",
+    name: "Robot Vision and Teleoperation",
+    category: "Robotics / Computer Vision",
+    shortDescription:
+      "Robot vision and teleoperation platform integrating live camera streaming, AI perception, ROS2 control, browser-based teleoperation, FastAPI, and WebSockets.",
+    whatIBuilt:
+      "Engineered a robot vision and teleoperation platform integrating live camera streaming, AI perception, ROS2 control, browser-based teleoperation, FastAPI, and WebSockets.",
+    overview:
+      "A robot vision and teleoperation platform: live camera streaming, AI perception, ROS2 control, browser-based teleoperation, FastAPI, and WebSockets.",
+    requirements: [
+      "Live camera streaming",
+      "AI perception",
+      "ROS2 control",
+      "Browser-based teleoperation",
+      "FastAPI",
+      "WebSockets",
+    ],
+    architecture: [
+      { id: "stream", label: "Live camera streaming" },
+      { id: "perception", label: "AI perception" },
+      { id: "ros2", label: "ROS2 control" },
+      { id: "teleop", label: "Browser teleoperation" },
+      { id: "fastapi", label: "FastAPI" },
+      { id: "ws", label: "WebSockets" },
+    ],
+    stack: ["ROS2", "FastAPI", "WebSockets"],
+    status: "April 2025 — Present",
+    featured: true,
+    github: null,
+    demo: null,
+    caseStudy: true,
+    gallery: [],
+  },
+  {
+    slug: "humanoid-robotics-vla",
+    name: "Humanoid Robotics and Vision-Language-Action",
+    category: "Robotics / VLA",
+    shortDescription:
+      "Humanoid robotics and Vision-Language-Action systems, including multi-camera data collection, manipulation workflows, robot state/action recording, and NVIDIA GR00T-based development.",
+    whatIBuilt:
+      "Developed humanoid robotics and Vision-Language-Action systems, including multi-camera data collection, manipulation workflows, robot state/action recording, and NVIDIA GR00T-based development.",
+    overview:
+      "Humanoid robotics and Vision-Language-Action systems: multi-camera data collection, manipulation workflows, robot state/action recording, and NVIDIA GR00T-based development.",
+    requirements: [
+      "Multi-camera data collection",
+      "Manipulation workflows",
+      "Robot state/action recording",
+      "NVIDIA GR00T-based development",
+    ],
+    architecture: [
+      { id: "cameras", label: "Multi-camera data collection" },
+      { id: "manipulation", label: "Manipulation workflows" },
+      { id: "recording", label: "State / action recording" },
+      { id: "groot", label: "NVIDIA GR00T" },
+    ],
+    stack: ["NVIDIA GR00T", "Vision-Language-Action"],
     status: "April 2025 — Present",
     featured: true,
     github: null,

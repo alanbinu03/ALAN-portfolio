@@ -9,14 +9,14 @@ export const education = [
   {
     id: "upadhye",
     period: "2021",
-    credential: "",
+    credential: "Higher Secondary Education",
     institution: "Upadhye College Of Science",
     result: "83%",
   },
   {
     id: "nashik-cambridge",
     period: "2019",
-    credential: "",
+    credential: "Primary and Secondary Education",
     institution: "Nashik Cambridge School",
     result: "86.20%",
   },

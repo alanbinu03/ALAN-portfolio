@@ -19,9 +19,10 @@ export const social = {
 
 export const navLinks = [
   { href: "/#about", label: "About" },
-  { href: "/#work", label: "Work" },
-  { href: "/#practice", label: "Practice" },
-  { href: "/#record", label: "Record" },
+  { href: "/#education", label: "Education" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#work", label: "Projects" },
+  { href: "/#practice", label: "Skills" },
   { href: "/#contact", label: "Contact" },
 ];
 
