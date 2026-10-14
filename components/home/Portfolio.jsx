@@ -465,8 +465,8 @@ export default function Portfolio() {
             </div>
             <div className="mx-auto w-full max-w-[500px]">
               <TiltedCard
-                imageSrc="/images/about-scene.jpg"
-                altText="An engineer working at a messy desk, with a softboard of todos and a glass of chai."
+                imageSrc="/images/about-scene.jpg?v=2"
+                altText="An engineer in a purple hoodie at a desk, with code, a vision model, a small robot arm, and a glass of chai."
                 containerWidth="100%"
                 containerHeight="auto"
                 imageWidth="100%"
