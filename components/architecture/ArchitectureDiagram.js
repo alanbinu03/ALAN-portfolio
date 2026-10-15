@@ -71,7 +71,7 @@ export function ArchitectureFlow({ stages }) {
                   )}
                   data-cursor="true"
                 >
-                  <span className="font-mono text-[11px] tracking-[0.18em] uppercase">
+                  <span className="min-w-0 break-words font-mono text-[11px] tracking-[0.18em] uppercase">
                     {stage.label}
                   </span>
                   <span className="text-dim">{String(index + 1).padStart(2, "0")}</span>

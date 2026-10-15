@@ -32,7 +32,7 @@ export default function ProjectDetail({ project, related = [] }) {
 
   return (
     <article className="mx-auto w-full max-w-[1120px] px-5 py-12 sm:px-6 lg:px-8">
-      <p className="font-mono text-[11px] tracking-[0.18em] text-dim uppercase">
+      <p className="break-words font-mono text-[11px] tracking-[0.18em] text-dim uppercase">
         <Link href="/#projects" className="hover:text-text">
           Projects
         </Link>

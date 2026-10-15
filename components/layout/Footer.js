@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
             {mail ? (
-              <a className="text-muted transition-colors hover:text-white" href={mail}>
+              <a className="break-all text-muted transition-colors hover:text-white" href={mail}>
                 {profile.email}
               </a>
             ) : null}

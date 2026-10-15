@@ -181,11 +181,25 @@ function NativePhoto() {
 
     const move = (event) => {
       if (!pointer || event.pointerId !== pointer.id) return;
+      const dragX = event.clientX - pointer.startX;
+      const dragY = event.clientY - pointer.startY;
+      if (!pointer.axis) {
+        if (Math.hypot(dragX, dragY) < 10) return;
+        pointer.axis = Math.abs(dragY) > Math.abs(dragX) ? "y" : "x";
+        if (pointer.axis === "y") {
+          pointer = null;
+          setDragging(false);
+          window.removeEventListener("pointermove", move);
+          window.removeEventListener("pointerup", up);
+          window.removeEventListener("pointercancel", up);
+          return;
+        }
+      }
       cx = event.clientX - pointer.dx;
       cy = event.clientY - pointer.dy;
       paint();
       if (pointer.counted) return;
-      const travel = Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY);
+      const travel = Math.hypot(dragX, dragY);
       if (travel < 16) return;
       pointer.counted = true;
       nudgeCount.current += 1;
@@ -243,7 +257,7 @@ function NativePhoto() {
     >
       <div
         ref={photoRef}
-        className={`absolute inset-0 cursor-grab touch-none select-none active:cursor-grabbing ${dragging ? "z-40" : "z-10"}`}
+        className={`absolute inset-0 cursor-grab touch-pan-y select-none active:cursor-grabbing ${dragging ? "z-40" : "z-10"}`}
       >
         <GlareHover
           width="100%"
@@ -310,7 +324,7 @@ function Greeting() {
 
   const greeting = GREETINGS[index];
   const line =
-    "w-full max-w-full text-left text-[clamp(1.7rem,4.5vw,2.25rem)] leading-snug tracking-tight break-words text-white sm:text-4xl";
+    "w-full max-w-full text-left text-[clamp(1.55rem,7vw,2.25rem)] leading-snug tracking-tight break-words text-white";
 
   return (
     <div className="mt-3 grid w-full min-w-0">
@@ -442,7 +456,7 @@ export default function Portfolio() {
         </Container>
       </section>
 
-      <section id="about" className="py-16 sm:py-20">
+      <section id="about" className="py-12 sm:py-16 lg:py-20">
         <Container>
           <div className="grid items-start gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(260px,500px)] xl:items-center xl:gap-14">
             <div className="min-w-0">
@@ -508,7 +522,7 @@ export default function Portfolio() {
         </Container>
       </section>
 
-      <section id="education" className="py-16 sm:py-20">
+      <section id="education" className="py-12 sm:py-16 lg:py-20">
         <Container>
           <div className="min-w-0 rounded-[16px] border border-white/10 bg-[#05060a] p-5 sm:p-6">
             <Label>Education</Label>
@@ -535,7 +549,7 @@ export default function Portfolio() {
         </Container>
       </section>
 
-      <section id="experience" className="py-16 sm:py-20">
+      <section id="experience" className="py-12 sm:py-16 lg:py-20">
         <Container>
           <BorderGlow
             className="min-w-0 p-5 sm:p-6"
@@ -566,7 +580,7 @@ export default function Portfolio() {
         </Container>
       </section>
 
-      <section id="work" className="py-16 sm:py-20">
+      <section id="work" className="py-12 sm:py-16 lg:py-20">
         <Container>
           <div className="flex items-end justify-between gap-6 border-b border-white/10 pb-6">
             <div>
@@ -644,7 +658,7 @@ export default function Portfolio() {
         </Container>
       </section>
 
-      <section id="practice" className="py-16 sm:py-20">
+      <section id="practice" className="py-12 sm:py-16 lg:py-20">
         <Container>
           <Label>Skills</Label>
           <ScrollFloat

@@ -34,7 +34,7 @@ export default function Navbar() {
   const mail = mailtoHref(profile.email);
 
   return (
-    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4">
+    <header className="sticky top-0 z-50 px-[max(0.75rem,env(safe-area-inset-left))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-4">
       <nav
         className={cn(
           "mx-auto flex max-w-[1120px] items-center justify-between overflow-x-clip rounded-[14px] border px-3 py-2.5 sm:px-4",
@@ -102,7 +102,7 @@ export default function Navbar() {
         {open ? (
           <motion.div
             id="mobile-nav"
-            className="glass fixed inset-x-3 top-[4.6rem] z-50 max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[14px] border border-border lg:hidden"
+            className="fixed inset-x-3 top-[4.6rem] z-50 max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[14px] border border-border bg-[#0b0d12] shadow-[0_16px_40px_rgba(0,0,0,0.45)] lg:hidden"
             initial={reduce ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
@@ -113,7 +113,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block border-b border-border py-3 text-base text-text"
+                    className="flex min-h-12 items-center border-b border-border py-3 text-base text-text"
                     onClick={() => setOpen(false)}
                   >
                     {link.label}

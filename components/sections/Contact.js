@@ -130,7 +130,7 @@ export default function Contact() {
                 value={values[field.name]}
                 onChange={onChange}
                 aria-invalid={Boolean(errors[field.name])}
-                className="mt-2 w-full rounded-[10px] border border-border bg-bg px-3 py-2.5 text-sm text-text outline-none focus:border-accent/50"
+                className="mt-2 min-h-12 w-full rounded-[10px] border border-border bg-bg px-3 py-3 text-base text-text outline-none focus:border-accent/50"
               />
               {errors[field.name] ? (
                 <span className="mt-1 block text-xs text-danger">{errors[field.name]}</span>
@@ -147,7 +147,7 @@ export default function Contact() {
               value={values.message}
               onChange={onChange}
               aria-invalid={Boolean(errors.message)}
-              className="mt-2 w-full resize-y rounded-[10px] border border-border bg-bg px-3 py-2.5 text-sm text-text outline-none focus:border-accent/50"
+              className="mt-2 w-full resize-y rounded-[10px] border border-border bg-bg px-3 py-3 text-base text-text outline-none focus:border-accent/50"
             />
             {errors.message ? (
               <span className="mt-1 block text-xs text-danger">{errors.message}</span>
